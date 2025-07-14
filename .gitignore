@@ -7,3 +7,5 @@ code/data/*
 code/data_preprocess/data/*
 code/ann_models/*
 code/xgb/*
+code/wandb/*
+code/utils/wandb/*

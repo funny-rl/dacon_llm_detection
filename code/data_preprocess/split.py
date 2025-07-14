@@ -2,9 +2,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import os 
 
-input_csv_path = "./data/total_data.csv"
-train_output_path = "../data/aug_split/train_1.csv"
-valid_output_path = "../data/aug_split/valid_1.csv"
+input_csv_path = "./data/total_data_2.csv"
+train_output_path = "../data/aug30000/train.csv"
+valid_output_path = "../data/aug30000/valid.csv"
 
 print("🚀 데이터셋 로드 및 분할을 시작합니다...")
 

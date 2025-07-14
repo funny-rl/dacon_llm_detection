@@ -8,7 +8,7 @@ def get_config(args):
     function(
         "--data_dir", 
         type=str, 
-        default="./data/aug_split", 
+        default="./data/aug30000", 
         help="Directory containing the dataset files ex. (train.csv, valid.csv, test.csv)."
     )
     function(
@@ -21,12 +21,6 @@ def get_config(args):
         "--model_name", 
         type=str, 
         default="kykim/bert-kor-base",
-        choices=[
-            "kykim/electra-kor-base",                                           
-            "klue/roberta-large", 
-            "kykim/funnel-kor-base",
-            "beomi/KcELECTRA-base",        
-        ], 
         help="Name of the pre-trained model to use."
     )
     function(
@@ -50,7 +44,7 @@ def get_config(args):
     function(
         "--early_stopping_patience",
         type=int,
-        default=3,
+        default=5,
         help="Number of evaluation steps with no improvement before stopping training early."
     )
     function(

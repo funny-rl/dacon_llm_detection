@@ -14,12 +14,6 @@ def get_config(args):
         "--model_name", 
         type=str, 
         default="kykim/bert-kor-base",
-        choices=[
-            "kykim/electra-kor-base",                                           
-            "klue/roberta-large", 
-            "kykim/funnel-kor-base",
-            "beomi/KcELECTRA-base",        
-        ], 
         help="Name of the pre-trained model to use."
     )
     function(

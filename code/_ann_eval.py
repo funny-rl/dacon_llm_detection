@@ -1,5 +1,4 @@
 import sys
-import time
 import torch 
 import pathlib
 import datetime
@@ -34,6 +33,14 @@ def main(all_args: argparse.Namespace) -> None:
     test_dataset = load_test_dataset(
         data_dir=all_args.data_dir
     )
+    
+    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+    
+    def test_tokenize(example):
+        return tokenizer(example[PARAGRAPH_TEXT], padding="max_length", truncation=True, max_length=max_length)
+    test_dataset = test_dataset.map(test_tokenize, batched=True)
+    test_dataset.set_format(type="torch", columns=["input_ids", "attention_mask"])
+    
     test_texts = test_dataset[TEST_KEY][PARAGRAPH_TEXT]
     submission_format = pd.read_csv("./data/sample_submission.csv")
 
@@ -42,7 +49,6 @@ def main(all_args: argparse.Namespace) -> None:
     BEST_JSON: pathlib.Path = ROOT_DIR / "trainer_state.json"
     best_ckpt = load_model_chpts(ROOT_DIR, BEST_JSON)
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
     model = AutoModelForSequenceClassification.from_pretrained(
         best_ckpt,
         torch_dtype="auto",

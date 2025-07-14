@@ -46,32 +46,26 @@ def merge_csv_files(file_paths: list, output_filename: str = "merged_output.csv"
     return merged_df
 
 if __name__ == "__main__":
-    # csv_files_to_merge = [
-    #     "./data/output_filtered1_augmented.csv",
-    #     "./data/output_filtered2_augmented.csv",
-    #     "./data/output_filtered3_augmented.csv",
-    #     "./data/output_filtered4_augmented.csv",
-    #     "./data/output_filtered5_augmented.csv",
-    #     "./data/output_filtered1.csv",
-    #     "./data/output_filtered2.csv",
-    #     "./data/output_filtered3.csv",
-    #     "./data/output_filtered4.csv",
-    #     "./data/output_filtered5.csv",
-    # ]
-
+    csv_files_to_merge = [
+        "./data/train_random_30000_augmented_1.csv",
+        "./data/train_random_30000_augmented_2.csv",
+        "./data/train_random_30000_augmented_3.csv",
+        "./data/train_random_30000_augmented_4.csv",
+        "./data/train.csv",
+    ]
     #csv_files_to_merge = [
     #     "./data/split_augmented.csv",
     #     "./data/no_split.csv",
     # ]
     
-    csv_files_to_merge = [
-        "./data/total_data.csv",
-        "./data/filtered_train.csv",
-    ]
+    # csv_files_to_merge = [
+    #     "./data/total_data.csv",
+    #     "./data/filtered_train.csv",
+    # ]
     
     #output_csv_name = "./data/total_data.csv"
     #output_csv_name = "./data/split_augmented.csv"
-    output_csv_name = "./data/total_data.csv"
+    output_csv_name = "./data/total_data_2.csv"
     
     final_merged_df = merge_csv_files(csv_files_to_merge, output_csv_name)
 
