@@ -8,7 +8,7 @@ def get_config(args):
     function(
         "--data_dir", 
         type=str, 
-        default="./data/aug1000", 
+        default="./data/aug10000", 
         help="Directory containing the dataset files ex. (train.csv, valid.csv, test.csv)."
     )
     function(
