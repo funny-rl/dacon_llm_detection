@@ -5,3 +5,5 @@ __pycache__/
 
 code/data/*
 code/data_preprocess/data/*
+code/ann_models/*
+code/xgb/*

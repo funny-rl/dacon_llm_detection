@@ -8,7 +8,7 @@ def get_config(args):
     function(
         "--data_dir", 
         type=str, 
-        default="./data/aug10000", 
+        default="./data/aug_split", 
         help="Directory containing the dataset files ex. (train.csv, valid.csv, test.csv)."
     )
     function(
@@ -36,10 +36,10 @@ def get_config(args):
         help="Maximum sequence length for tokenization."
     )
     function(
-        "--batch_size", 
+        "--batch_size_per_device", 
         type=int, 
         default=32, 
-        help="Batch size for training and evaluation."
+        help="Batch size for training and evaluation per device."
     )
     function(
         "--lr", 

@@ -21,7 +21,7 @@ def data_dist(df: pd.DataFrame) ->None:
     print(f"Label 1 text length - mean: {label_1_stats['mean']:.2f}, std: {label_1_stats['std']:.2f}")
 
 if __name__ == "__main__":
-    csv_path = "./data/no_split.csv"
+    csv_path = "./data/split_augmented.csv"
     print("📊 Data Analysis...\n")
     df = pd.read_csv(csv_path)
     print(f"CSV path:{csv_path}\n")   

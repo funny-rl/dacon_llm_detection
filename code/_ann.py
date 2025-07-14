@@ -2,7 +2,7 @@ import sys
 import argparse
 
 from typing import List
-from config.config import get_config
+from config.ann_config import get_config
 
 from utils.utils import compute_metrics
 
@@ -17,7 +17,7 @@ from transformers import (
     AutoTokenizer, 
     TrainingArguments,
     EarlyStoppingCallback,
-    AutoModelForSequenceClassification
+    AutoModelForSequenceClassification,
 )
 
 def main(all_args: argparse.Namespace) -> None:
@@ -26,13 +26,13 @@ def main(all_args: argparse.Namespace) -> None:
     split_raio: float = all_args.split_raio 
     
     max_length: int = all_args.max_length
-    batch_size: int = all_args.batch_size
+    batch_size_per_device: int = all_args.batch_size_per_device
     valid_interval: int = all_args.valid_interval
     early_stopping_patience: int = all_args.early_stopping_patience
     
     data_dir: str = all_args.data_dir
     model_name: str = all_args.model_name
-    output_dir: str = f"./models/{model_name}"
+    output_dir: str = f"./ann_models/{model_name}"
     
     assert 1.0 >= split_raio >= 0.0, "split_raio must be between 0.0 and 1.0"
     
@@ -43,15 +43,14 @@ def main(all_args: argparse.Namespace) -> None:
     )
     
     tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
-    
     args = TrainingArguments(
         output_dir=output_dir,
         eval_strategy="steps",
         eval_steps=valid_interval,  
         save_steps=valid_interval,
         save_strategy="steps",
-        per_device_train_batch_size=batch_size,
-        per_device_eval_batch_size=batch_size,
+        per_device_train_batch_size=batch_size_per_device,
+        per_device_eval_batch_size=batch_size_per_device,
         num_train_epochs=5,
         save_total_limit=1,
         learning_rate=lr,
@@ -86,9 +85,6 @@ def main(all_args: argparse.Namespace) -> None:
         callbacks=[EarlyStoppingCallback(early_stopping_patience=early_stopping_patience)],
     )
     trainer.train()
-                
-
-
 
 if __name__ == "__main__":
     args: List[str] = sys.argv[1:]
